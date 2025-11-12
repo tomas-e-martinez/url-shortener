@@ -1,0 +1,21 @@
+@urlShortenerApi_HostAddress = http://localhost:5104
+
+GET {{urlShortenerApi_HostAddress}}/api/shortener/
+Accept: application/json
+
+
+###
+
+GET {{urlShortenerApi_HostAddress}}/api/shortener/TchJ
+Accept: application/json
+
+
+###
+
+POST {{urlShortenerApi_HostAddress}}/api/shortener/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "original": "https://www.reddit.com/r/csharp/comments/1fznic4/caspnet_project_for_juniorentry_level_c_developer/"
+}
