@@ -48,9 +48,22 @@ namespace urlShortenerApi.Controllers
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
             var random = new Random();
+            string shortened;
 
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+            while(true)
+            {
+                shortened = new string(Enumerable.Repeat(chars, length)
+                    .Select(s => s[random.Next(s.Length)]).ToArray());
+
+                if (!UrlExists(shortened)) break;
+            }
+
+            return shortened;
+        }
+
+        private bool UrlExists(string shortened)
+        {
+            return _context.Urls.Any(e => e.Shortened == shortened);
         }
     }
 }
